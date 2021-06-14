@@ -1,0 +1,46 @@
+INSTITUTO TECNOLÓGICO SUPERIOR QUITO METROPOLITANO
+NOMBRE:MATEO VILLACIS
+FECHA: 31-05-2021
+class Autor {
+  String nombre;
+
+  String sexo;
+  int edad;
+  Autor(this.nombre, this.sexo, this.edad);
+}
+
+class Libro {
+  String nombreLibro;
+  Autor escritor;
+  Libro(this.nombreLibro, this.escritor);
+}
+main(List<String> args) {
+  List<Libro> book = [];
+  book.add(Libro("lA Playa", Autor("Pedro Perez", "Masculino", 32)));
+  book.add(Libro("El Amanecer", Autor("Juan Castillo", "Masculino", 45)));
+  book.add(Libro("El Paraíso", Autor("Raúl Peña", "Masculino", 52)));
+  book.add(Libro("La Luna", Autor("Ana Rivas", "Femenino", 64)));
+  book.add(Libro("La Luz", Autor("Lisbeth Túa", "Femenino", 28)));
+  book.add(Libro("La Música", Autor("Camila Pozo", "Femenino", 34)));   
+  int masculino = 0;
+  int femenino = 0;
+  int valorm = 0;
+  int valorf = 0;
+  int contm = 0;
+  int contf = 0;
+  for (var i = 0; i < book.length; i++) {
+    var element = book.map((e) => e.escritor).map((e) => e.sexo).elementAt(i);
+    if (element == "Masculino") {
+      valorm = book.map((e) => e.escritor).map((e) => e.edad).elementAt(i);
+      masculino += valorm;
+      contm++;
+    } else {
+      valorf = book.map((e) => e.escritor).map((e) => e.edad).elementAt(i);
+      femenino += valorf;
+      contf++;
+    }
+  }
+  print('El promedio de edad es ${(book.map((e) => e.escritor).map((e) => e.edad).reduce((value, element) => value + element) / book.length).round()}');
+  print('Promedio edad genero masculinos: ${masculino / contm}');
+  print('Promedio edad genero femeninos: ${femenino / contf}');
+}
